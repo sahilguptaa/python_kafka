@@ -21,7 +21,7 @@ def get_messages(topicname):
 
     def events():
         for i in client.topics[topicname].get_simple_consumer():
-            yield 'data:{}\n\n'.format(i.value)
+            yield 'data:{}\n\n'.format(i.value.decode('ascii'))
     return Response(events(), mimetype='text/event-stream')
 
 
